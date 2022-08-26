@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@nuxtjs/tailwindcss": "^5.3.2",
+    "nuxt": "3.0.0-rc.8",
+    "prettier": "2.7.1",
+    "primeicons": "^5.0.0",
+    "primevue": "3.16.2",
+    "unplugin-vue-components": "^0.22.4",
+    "vue-infinite-loading": "^2.4.5"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "autoprefixer": "^10.4.8",
+    "eslint-plugin-prettier": "^4.2.1"
+  }
+}
