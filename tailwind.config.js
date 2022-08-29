@@ -1,4 +1,4 @@
-// const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 
 /** @type {import('tailwindcss').Config} */
@@ -17,7 +17,17 @@ module.exports = {
       center: true,
       padding: '1.25rem',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography'),
+  ],
 }

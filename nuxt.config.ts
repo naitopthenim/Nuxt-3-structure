@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from 'nuxt'
-// import Components from 'unplugin-vue-components/vite';
-// import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
+import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -29,7 +29,6 @@ export default defineNuxtConfig({
   buildModules: ['@nuxtjs/tailwindcss'],
 
   build: {
-
     postcss: {
       postcssOptions: require('./postcss.config.js'),
     },
@@ -37,6 +36,18 @@ export default defineNuxtConfig({
     transpile: ['primevue'],
     babel: {
       plugins: ['@babel/plugin-proposal-optional-chaining'],
+    },
+  },
+
+  webpack: {
+    postcss: {
+      postcssOptions: {
+        plugins: {
+          'postcss-nested': {},
+          'postcss-hexrgba': {},
+          'postcss-import': {},
+        },
+      },
     },
   },
 
@@ -48,16 +59,16 @@ export default defineNuxtConfig({
         host: 'localhost',
       },
     },
-    // plugins: [
-    //   Components({
-    //     resolvers: [
-    //       PrimeVueResolver({
-    //         // prefix for components (e.g. 'P' to resolve Menu from PMenu)
-    //         prefix: 'P',
-    //       }),
-    //     ],
-    //   }),
-    // ],
+    plugins: [
+      Components({
+        resolvers: [
+          PrimeVueResolver({
+            // prefix for components (e.g. 'P' to resolve Menu from PMenu)
+            prefix: 'P',
+          }),
+        ],
+      }),
+    ],
   },
 
   // https://v3.nuxtjs.org/guide/features/runtime-config/
