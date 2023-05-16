@@ -1,13 +1,15 @@
-import { defineNuxtConfig } from 'nuxt'
+// import { defineNuxtConfig } from 'nuxt';
 import Components from 'unplugin-vue-components/vite';
 import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
 
-  nitro: {
-    preset: 'node-server',
+  // @ts-ignore
+  typescript: {
+    shim: false,
+    strict: false,
   },
 
   app: {
@@ -26,30 +28,34 @@ export default defineNuxtConfig({
 
   // components: [{ path: '~/components', pathPrefix: false }],
 
-  buildModules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss'],
+
+  postcss: {
+    plugins: {
+      'postcss-nested': {},
+      'postcss-hexrgba': {},
+      'postcss-import': {},
+    },
+  },
 
   build: {
-    postcss: {
-      postcssOptions: require('./postcss.config.js'),
-    },
-
     transpile: ['primevue'],
-    babel: {
-      plugins: ['@babel/plugin-proposal-optional-chaining'],
-    },
+    // babel: {
+    //   plugins: ['@babel/plugin-proposal-optional-chaining'],
+    // },
   },
 
-  webpack: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          'postcss-nested': {},
-          'postcss-hexrgba': {},
-          'postcss-import': {},
-        },
-      },
-    },
-  },
+  // webpack: {
+  //   postcss: {
+  //     postcssOptions: {
+  //       plugins: {
+  //         'postcss-nested': {},
+  //         'postcss-hexrgba': {},
+  //         'postcss-import': {},
+  //       },
+  //     },
+  //   },
+  // },
 
   vite: {
     // fixed issue ws: https://github.com/nuxt/framework/issues/1796#issuecomment-965577597
@@ -79,4 +85,4 @@ export default defineNuxtConfig({
       apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
     },
   },
-})
+});
